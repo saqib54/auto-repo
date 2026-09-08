@@ -1,0 +1,22 @@
+{
+  "name": "daily-contribution-bot",
+  "version": "1.0.0",
+  "description": "Automated GitHub daily contribution generator, tracker, and visual dashboard.",
+  "main": "src/auto-commit.js",
+  "type": "module",
+  "scripts": {
+    "start": "npx http-server -p 8080 -o",
+    "commit": "node src/auto-commit.js",
+    "commit:multi": "node src/auto-commit.js --count=3",
+    "backdate": "node src/backdate.js"
+  },
+  "keywords": [
+    "github",
+    "contributions",
+    "auto-commit",
+    "green-squares",
+    "streak-tracker"
+  ],
+  "author": "Developer",
+  "license": "MIT"
+}

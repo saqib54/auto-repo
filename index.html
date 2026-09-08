@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GitHub Daily Contribution Bot & Streak Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <div class="background-glob glob-1"></div>
+  <div class="background-glob glob-2"></div>
+
+  <div class="app-container">
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <i class="fa-brands fa-github"></i>
+        </div>
+        <div>
+          <h1>CommitPulse</h1>
+          <p class="subtitle">GitHub Daily Contribution & Streak Automation</p>
+        </div>
+      </div>
+      <div class="header-actions">
+        <div class="status-badge live">
+          <span class="pulse-dot"></span>
+          <span>GitHub Action Active</span>
+        </div>
+        <button id="btn-manual-trigger" class="btn btn-primary">
+          <i class="fa-solid fa-plus"></i> Simulate Daily Commit
+        </button>
+      </div>
+    </header>
+
+    <!-- Key Metrics Grid -->
+    <section class="stats-grid">
+      <div class="stat-card glass-panel">
+        <div class="stat-icon icon-emerald">
+          <i class="fa-solid fa-fire"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Current Streak</span>
+          <h2 id="stat-streak" class="stat-value">1 <span class="unit">Days</span></h2>
+          <span class="stat-sub text-emerald">🔥 Keep the fire burning</span>
+        </div>
+      </div>
+
+      <div class="stat-card glass-panel">
+        <div class="stat-icon icon-cyan">
+          <i class="fa-solid fa-code-commit"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Total Commits</span>
+          <h2 id="stat-total" class="stat-value">1</h2>
+          <span class="stat-sub text-cyan">Across all tracked days</span>
+        </div>
+      </div>
+
+      <div class="stat-card glass-panel">
+        <div class="stat-icon icon-purple">
+          <i class="fa-solid fa-calendar-check"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Today's Status</span>
+          <h2 id="stat-today-status" class="stat-value text-emerald">Completed</h2>
+          <span id="stat-last-time" class="stat-sub">Updated 2026-09-08</span>
+        </div>
+      </div>
+
+      <div class="stat-card glass-panel">
+        <div class="stat-icon icon-amber">
+          <i class="fa-solid fa-layer-group"></i>
+        </div>
+        <div class="stat-info">
+          <span class="stat-label">Focus Area</span>
+          <h2 id="stat-top-topic" class="stat-value topic-text">Clean Code</h2>
+          <span class="stat-sub">Daily developer learning topic</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub Matrix Heatmap Preview -->
+    <section class="heatmap-section glass-panel">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-border-all"></i>
+          <h3>GitHub Contribution Grid Matrix</h3>
+        </div>
+        <div class="legend">
+          <span>Less</span>
+          <span class="cell level-0"></span>
+          <span class="cell level-1"></span>
+          <span class="cell level-2"></span>
+          <span class="cell level-3"></span>
+          <span class="cell level-4"></span>
+          <span>More</span>
+        </div>
+      </div>
+      <div id="heatmap-grid" class="heatmap-grid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+    </section>
+
+    <!-- Main Content Dual Grid: Quote Card & Setup Guide -->
+    <div class="content-dual-grid">
+      <!-- Dev Quote Card -->
+      <section class="quote-card glass-panel">
+        <div class="card-tag"><i class="fa-solid fa-quote-left"></i> Daily Dev Thought</div>
+        <blockquote id="quote-text">"Consistency is what transforms average into excellence."</blockquote>
+        <div class="quote-footer">
+          <span id="quote-topic-badge" class="topic-pill">Clean Code & Refactoring</span>
+          <button id="btn-new-quote" class="btn-icon" title="Generate New Quote">
+            <i class="fa-solid fa-rotate"></i>
+          </button>
+        </div>
+      </section>
+
+      <!-- Instructions & Quick Guide -->
+      <section class="guide-card glass-panel">
+        <h3><i class="fa-solid fa-rocket"></i> Connect To GitHub in 3 Steps</h3>
+        <ol class="setup-steps">
+          <li>
+            <div class="step-num">1</div>
+            <div>
+              <strong>Create GitHub Repository</strong>
+              <p>Create a public repository named <code>daily-contributions</code> on your GitHub account.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">2</div>
+            <div>
+              <strong>Push Code & Enable Write Access</strong>
+              <p>Push this folder to GitHub. Go to Repo <strong>Settings &gt; Actions &gt; General &gt; Workflow permissions</strong> and set to <strong>"Read and write permissions"</strong>.</p>
+            </div>
+          </li>
+          <li>
+            <div class="step-num">3</div>
+            <div>
+              <strong>Sit Back & Watch Your Grid Turn Green!</strong>
+              <p>GitHub Actions automatically runs every day at 09:00 UTC and updates your streak!</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+    </div>
+
+    <!-- Recent Logs Table -->
+    <section class="logs-section glass-panel">
+      <div class="section-header">
+        <div class="section-title">
+          <i class="fa-solid fa-list-check"></i>
+          <h3>Recent Contribution Activity Feed</h3>
+        </div>
+        <span class="feed-count"><span id="history-count">1</span> entries recorded</span>
+      </div>
+      <div class="table-wrapper">
+        <table class="logs-table">
+          <thead>
+            <tr>
+              <th>Timestamp</th>
+              <th>Streak</th>
+              <th>Learning Topic</th>
+              <th>Inspirational Quote / Log</th>
+            </tr>
+          </thead>
+          <tbody id="logs-table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script src="app.js" type="module"></script>
+</body>
+</html>
